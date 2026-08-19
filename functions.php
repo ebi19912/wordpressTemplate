@@ -1,24 +1,32 @@
 <?php
 /**
- * Theme functions and definitions
+ * Theme functions and definitions.
  */
 
-// Define custom image size for Bento Grid
-function bento_custom_image_sizes() {
-    add_image_size( 'bento-custom-size', 600, 600, true ); // 600x600 cropped
-}
-add_action( 'after_setup_theme', 'bento_custom_image_sizes' );
+/**
+ * Enqueue scripts and styles.
+ */
+function google_store_child_enqueue_styles() {
+    // Enqueue parent theme style
+    wp_enqueue_style( 'storefront-style', get_template_directory_uri() . '/style.css' );
 
-// Enqueue styles conditionally for the Bento Grid template
-function bento_enqueue_scripts() {
-    // Only load the CSS if we are on the specific page template
-    if ( is_page_template( 'template-bento.php' ) ) {
+    // Enqueue our custom google store styles only if we are using the custom template
+    if ( is_page_template( 'template-google-store.php' ) ) {
         wp_enqueue_style(
-            'bento-style',
-            get_stylesheet_directory_uri() . '/bento-style.css',
-            array(), // dependencies
-            '1.0.0'  // version
+            'google-store-style',
+            get_stylesheet_directory_uri() . '/google-store-style.css',
+            array( 'storefront-style' ),
+            wp_get_theme()->get('Version')
         );
     }
 }
-add_action( 'wp_enqueue_scripts', 'bento_enqueue_scripts' );
+add_action( 'wp_enqueue_scripts', 'google_store_child_enqueue_styles' );
+
+/**
+ * Register custom image sizes for the Google Store template.
+ */
+function google_store_child_setup() {
+    // Add custom image size for products in the grid
+    add_image_size( 'google-store-product', 600, 600, false ); // 600x600, soft crop (proportional)
+}
+add_action( 'after_setup_theme', 'google_store_child_setup' );

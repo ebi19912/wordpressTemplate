@@ -1,0 +1,264 @@
+/*
+ * Google Store Material Design 3 Styles
+ * These styles apply specifically to the template-google-store.php
+ */
+
+:root {
+    --google-blue: #1a73e8;
+    --google-blue-hover: #174ea6;
+    --google-white: #ffffff;
+    --google-bg-light: #f8f9fa;
+    --google-text-primary: #202124;
+    --google-text-secondary: #5f6368;
+    --google-border: #dadce0;
+    --google-badge-bg: #e6f4ea;
+    --google-badge-text: #137333;
+    --google-font: 'Google Sans', 'Product Sans', Roboto, Arial, sans-serif;
+    --google-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Reset and Base Styles specifically for the template area */
+.google-store-container {
+    font-family: var(--google-font);
+    color: var(--google-text-primary);
+    background-color: var(--google-white);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+.google-store-container * {
+    box-sizing: border-box;
+}
+
+.google-store-container h1,
+.google-store-container h2,
+.google-store-container h3 {
+    color: var(--google-text-primary);
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-top: 0;
+}
+
+.google-store-container a {
+    text-decoration: none;
+    color: var(--google-blue);
+    transition: color var(--google-transition);
+}
+
+/* Glassmorphism Header */
+.gs-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--google-border);
+    padding: 0 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 64px;
+}
+
+.gs-header-nav {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+}
+
+.gs-header-nav a {
+    color: var(--google-text-secondary);
+    font-weight: 500;
+    font-size: 14px;
+    position: relative;
+    padding: 8px 0;
+}
+
+/* Menu Line Animation */
+.gs-header-nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--google-blue);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s ease;
+}
+
+.gs-header-nav a:hover::after {
+    transform: scaleX(1);
+}
+
+/* Page Layout */
+.gs-main-content {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 48px 24px;
+}
+
+.gs-section-title {
+    font-size: 40px;
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+/* Product Grid (CSS Grid) */
+.gs-product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+}
+
+/* Product Cards (Flexbox) */
+.gs-product-card {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--google-bg-light);
+    border-radius: 24px;
+    padding: 24px;
+    text-align: center;
+    transition: box-shadow var(--google-transition), transform var(--google-transition);
+    border: 1px solid transparent;
+}
+
+.gs-product-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    border-color: var(--google-border);
+    transform: translateY(-2px);
+}
+
+/* Badges */
+.gs-badge-container {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 16px;
+    height: 24px;
+}
+
+.gs-badge {
+    background-color: var(--google-badge-bg);
+    color: var(--google-badge-text);
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* Product Image */
+.gs-product-image {
+    width: 100%;
+    height: auto;
+    max-height: 250px;
+    object-fit: contain;
+    margin-bottom: 24px;
+}
+
+/* Swatches */
+.gs-swatches {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.gs-swatch {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 1px solid var(--google-border);
+    cursor: pointer;
+}
+
+/* Product Details */
+.gs-product-title {
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.gs-product-desc {
+    color: var(--google-text-secondary);
+    font-size: 14px;
+    margin-bottom: 16px;
+    flex-grow: 1; /* Pushes everything below it down */
+}
+
+.gs-product-price {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 24px;
+}
+
+.gs-product-actions {
+    margin-top: auto; /* Always aligns to bottom of flex container */
+    display: flex;
+    justify-content: center;
+}
+
+/* Buttons */
+.gs-btn {
+    display: inline-block;
+    padding: 10px 24px;
+    border-radius: 9999px; /* Pill-shaped */
+    font-weight: 500;
+    font-size: 14px;
+    text-align: center;
+    cursor: pointer;
+    transition: all var(--google-transition);
+}
+
+.gs-btn-primary {
+    background-color: var(--google-blue);
+    color: var(--google-white);
+    border: none;
+}
+
+.gs-btn-primary:hover {
+    background-color: var(--google-blue-hover);
+    color: var(--google-white);
+}
+
+.gs-btn-outline {
+    background-color: transparent;
+    color: var(--google-text-primary);
+    border: 1px solid var(--google-border);
+}
+
+.gs-btn-outline:hover {
+    border-color: var(--google-text-primary);
+    background-color: rgba(32, 33, 36, 0.04);
+}
+
+/* Checkout Layout Simulation (Sticky sidebar) */
+.gs-checkout-layout {
+    display: flex;
+    gap: 48px;
+    align-items: flex-start; /* Important for sticky to work properly */
+}
+
+.gs-checkout-main {
+    flex: 2;
+}
+
+.gs-checkout-sidebar {
+    flex: 1;
+    position: sticky;
+    top: 100px;
+    background-color: var(--google-bg-light);
+    padding: 24px;
+    border-radius: 24px;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .gs-checkout-layout {
+        flex-direction: column;
+    }
+    .gs-checkout-sidebar {
+        position: static;
+        width: 100%;
+    }
+}
